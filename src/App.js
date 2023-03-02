@@ -1,13 +1,17 @@
+import React, { Suspense,lazy } from 'react';
 import {BrowserRouter,Routes,Route} from "react-router-dom"
-import FinalScreen from "./pages/FinalScreen";
-import Questions from "./pages/Questions";
-import Settings from "./pages/Settings";
 import { Container,Box } from "@mui/system";
-import { Typography } from "@mui/material";
+const Settings= lazy(()=>import('./pages/Settings'));
+const FinalScreen= lazy(()=>import('./pages/FinalScreen'));
+const Questions= lazy(()=>import('./pages/Questions'));
+
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      <Suspense fallback={<div>Loading...</div>}>
+
       <Container maxWidth="sm">
         <Box textAlign={"center"} mt={5}>
         <Routes>
@@ -17,6 +21,7 @@ function App() {
         </Routes>
         </Box>
       </Container>
+      </Suspense>
       </BrowserRouter>
     </div>
   );
